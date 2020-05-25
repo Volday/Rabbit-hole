@@ -10,7 +10,6 @@ public class LegTarget : MonoBehaviour
     Material material;
     public Color startColor;
     public Color wallColor;
-    Vector3 startPosition;
     void Start()
     {
         material = GetComponent<Renderer>().materials[0];
@@ -29,7 +28,7 @@ public class LegTarget : MonoBehaviour
 
     public void GameRestart() {
         transform.position = Vector3.ClampMagnitude(legEnd.transform.position -
-            new Vector3(0, legEnd.transform.position.y, 0), 3) + new Vector3(0, legEnd.transform.position.y, 0);
+            new Vector3(0, legEnd.transform.position.y, 0), 3) + new Vector3(0, 52, 0);
     }
 
     private void OnCollisionStay(Collision collision)

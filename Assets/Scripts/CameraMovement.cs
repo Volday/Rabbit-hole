@@ -99,7 +99,6 @@ public class CameraMovement : MonoBehaviour
                                     - currentHit).magnitude;
                             }
                         }
-                        Debug.Log(distance);
                         if (distance < maxtargetMovementDistance)
                         {
                             legTarget.transform.position = currentHit;

@@ -7,13 +7,20 @@ public class Body : MonoBehaviour
     public List<LegMind> legs;
     [Range(0, 1)]
     public float squatRatio;
+    Quaternion startRotation;
+    CameraMovement camera;
 
     private void Awake()
     {
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMovement>();
+        startRotation = transform.rotation;
         GameRestart();
     }
     void Update()
     {
+        if (!camera.isActiveAndEnabled) {
+            camera.enabled = true;
+        }
         Vector3 midlePosition = Vector3.zero;
         for (int t = 0; t < legs.Count; t++)
         {
@@ -45,7 +52,9 @@ public class Body : MonoBehaviour
     }
 
     public void GameRestart() {
+        camera.enabled = false;
         transform.position = new Vector3(0, 52, 0);
+        transform.rotation = startRotation;
         for (int t = 0; t < legs.Count; t++) {
             legs[t].legEnd.legTarget.GameRestart();
         }
